@@ -32,11 +32,20 @@ exports.Reddit = class
                 if err? or res.statusCode >= 400
                     console.log err
                 else
+                    console.log "got back some activity"
                     body = JSON.parse body
-                    cb(RedditParser(body))
+                    parseTopic(body, cb)
         )
 
-class RedditParser
+parseTopic = (body, cb) ->
 
-    constructor: (@body) ->
-        console.log @body
+    for i in body.data.children
+        assert.ok i.kind == 't3'
+        findImage(i.data.url, (image_url) ->
+            i.data.image_url = image_url
+            console.log i
+            cb(i.data)
+        )
+
+findImage = (url, cb) ->
+    cb(url)

@@ -22,7 +22,7 @@ app.configure(() ->
     app.use(express.bodyParser())
     app.use(app.router)
     app.settings['view options'] = {
-      og_debug: false
+      p_debug: false
     }
 )
 
@@ -37,7 +37,7 @@ app.configure('development', () ->
 
     app.settings['view options']['host'] = 'http://localhost:' + app.set('port')
     app.settings['view options']['port'] = app.set('port')
-    app.settings['view options']['og_debug'] = true
+    app.settings['view options']['p_debug'] = true
 )
 
 app.configure('production', () ->
@@ -73,7 +73,9 @@ socket = io.listen(app)
 socket.on('connection', (client) ->
     console.log 'connection'
     r = new reddit.Reddit('pics')
-    r.get(null, (msg) ->
-        client.send(msg))
+    r.get(null, (story) ->
+        console.log story
+        client.send(story)
+    )
     #client.on('message', (url) ->)
 )

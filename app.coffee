@@ -74,7 +74,6 @@ socket.on('connection', (client) ->
     console.log 'connection'
     r = new reddit.Reddit('pics')
     r.get(null, (story) ->
-        console.log story
         client.send(story)
     )
     #client.on('message', (url) ->)

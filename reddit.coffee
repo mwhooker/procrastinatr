@@ -1,3 +1,5 @@
+Apricot = require 'apricot'
+mime = require 'mime'
 request = require 'request'
 url = require 'url'
 assert = require 'assert'
@@ -10,7 +12,7 @@ exports.Reddit = class
     }
 
     constructor: (@subreddit) ->
-        
+
         path = exports.Reddit.subreddits[@subreddit]
         console.log path
         assert.ok(path,
@@ -20,12 +22,12 @@ exports.Reddit = class
         @activity_url.pathname = path
 
     get: (after, cb) ->
-        
+
         #if after?
 
         uri = url.format(@activity_url)
         console.log "requesting activity from #{ uri }"
-        
+
         request(
             uri: uri
             , (err, res, body) =>
@@ -43,9 +45,23 @@ parseTopic = (body, cb) ->
         assert.ok i.kind == 't3'
         findImage(i.data.url, (image_url) ->
             i.data.image_url = image_url
-            console.log i
+            #console.log i
             cb(i.data)
         )
 
-findImage = (url, cb) ->
-    cb(url)
+findImage = (imageUrl, cb) ->
+    if mime.lookup(imageUrl).split('/')[0] == 'image'
+        return cb(imageUrl)
+
+    uri = url.parse(imageUrl)
+    if uri.hostname.indexOf(url, 0) >= 0
+        console.log("fixing #{imageUrl}")
+        uri.path = uri.path + '.jpg'
+        cb(url.format(uri))
+
+    """
+    Apricot.open url, (err, doc) ->
+        if err?
+            console.log err
+            return
+    """

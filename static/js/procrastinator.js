@@ -1,7 +1,7 @@
 (function() {
     
 
-    var opiateTpl = "<div><h2><%= title %></h2><img></img></div>";
+    var opiateTpl = "<div><h2><%= title %></h2><img src='<%= image_url %>'></img></div>";
 
     window.Opiate = Backbone.Model.extend({});
 
@@ -24,24 +24,8 @@
 
         render: function() {
             $(this.el).html(this.template(this.model.toJSON()));
-            var that = this;
-            $('img', this.el).load(function () {
-                that.resize($(this));
-            });
             return this;
         },
-
-        resize: function(elem) {
-            console.log(elem.width());
-            if (elem.width() > this.maxWidth) {
-                elem.width(this.maxWidth);
-            }
-        },
-
-        // hack to make the load event fire correctly
-        afterDom: function() {
-            $('img', this.el).attr('src', this.model.get('image_url'));
-        }
     });
 
     window.Procrastinator = Backbone.View.extend({
@@ -60,7 +44,6 @@
             id: opiate.id
         });
         $('#opiates').append(view.render().el);
-        view.afterDom();
       },
 
     });

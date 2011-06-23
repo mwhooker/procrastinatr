@@ -1,7 +1,7 @@
 (function() {
     
 
-    var opiateTpl = "<div><h2><%= title %></h2><img src='<%= image_url %>'></img></div>";
+    var opiateTpl = "<div><h2><%= title %></h2><img></img></div>";
 
     window.Opiate = Backbone.Model.extend({});
 
@@ -36,6 +36,11 @@
             if (elem.width() > this.maxWidth) {
                 elem.width(this.maxWidth);
             }
+        },
+
+        // hack to make the load event fire correctly
+        afterDom: function() {
+            $('img', this.el).attr('src', this.model.get('image_url'));
         }
     });
 
@@ -55,6 +60,7 @@
             id: opiate.id
         });
         $('#opiates').append(view.render().el);
+        view.afterDom();
       },
 
     });

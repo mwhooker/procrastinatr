@@ -1,3 +1,7 @@
 #opiates img {
     max-width: 940px;
 }
+
+.clear {
+    clear: both;
+}

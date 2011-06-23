@@ -1,7 +1,11 @@
 (function() {
     
 
-    var opiateTpl = "<div><h2><%= title %></h2><img src='<%= image_url %>'></img></div>";
+    var opiateTpl = "<div> \
+    <a href='http://reddit.com<%= permalink %>' target='none'><%= title %></a> \
+    <div class='clear'></div> \
+    <a href='<%= image_url %>'><img src='<%= image_url %>'></img></a> \
+    </div>";
 
     window.Opiate = Backbone.Model.extend({});
 

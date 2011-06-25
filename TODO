@@ -1,4 +1,7 @@
 cache
 paginate on scroll
-resize images so they fit display port
+resize images so they fit display port (DONE)
+maybe use some sort of CSS variable so we don't have magic numbers in max-width css.
 sex up markup/css
+if story_url not an image, parse html to find most likely image
+remember which images user has seen so we don't show them again

@@ -54,7 +54,7 @@ findImage = (imageUrl, cb) ->
         return cb(imageUrl)
 
     uri = url.parse(imageUrl)
-    if uri.hostname.indexOf(url, 0) >= 0
+    if uri.hostname.indexOf('imgur.com', 0) >= 0
         console.log("fixing #{imageUrl}")
         uri.path = uri.path + '.jpg'
         cb(url.format(uri))

@@ -7,13 +7,10 @@ assert = require 'assert'
 exports.Reddit = class
     @base_url:'http://www.reddit.com'
 
-    @subreddits: {
-        pics: '/r/pics.json'
-    }
 
     constructor: (@subreddit) ->
 
-        path = exports.Reddit.subreddits[@subreddit]
+        path = "/r/#{@subreddit}.json"
         console.log path
         assert.ok(path,
             @subreddit + ' not found')

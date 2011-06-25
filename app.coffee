@@ -72,11 +72,11 @@ socket = io.listen(app)
 
 socket.on('connection', (client) ->
     console.log 'connection'
-    r = new reddit.Reddit('pics')
-    r.get(null, (story) ->
-        client.send(story)
-    )
-    client.on('message', (msg) ->
-        console.log msg
+    client.on('message', (subreddit) ->
+        console.log subreddit
+        r = new reddit.Reddit(subreddit)
+        r.get(null, (story) ->
+            client.send(story)
+        )
     )
 )

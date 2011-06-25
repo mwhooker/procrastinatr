@@ -139,12 +139,13 @@
         var socket = new io.Socket();
         window.App = new Procrastinator;
 
-        var subreddits = [];
+        var subreddits = ['pics', 'funny', 'comics', 'inglip'];
+        var activeSubreddits = [];
         if (location.hash) {
-            subreddits = location.hash.substr(1).split(';');
+            activeSubreddits = location.hash.substr(1).split(';');
         }
-        _.each(['pics', 'funny', 'comics', 'inglip'], function(item) {
-            var checked = (subreddits.indexOf(item) >= 0);
+        _.each(_.uniq(subreddits.concat(activeSubreddits)), function(item) {
+            var checked = (activeSubreddits.indexOf(item) >= 0);
             var subreddit = new Subreddit({
                 'subreddit': item,
                 'checked': checked

@@ -76,5 +76,7 @@ socket.on('connection', (client) ->
     r.get(null, (story) ->
         client.send(story)
     )
-    #client.on('message', (url) ->)
+    client.on('message', (msg) ->
+        console.log msg
+    )
 )

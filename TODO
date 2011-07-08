@@ -1,4 +1,4 @@
-cache
+cach (using caching request library)
 paginate on scroll
 maybe use some sort of CSS variable so we don't have magic numbers in max-width css.
 sex up markup/css

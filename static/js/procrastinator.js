@@ -4,7 +4,7 @@
     var opiateTpl = "<div> \
         <a href='http://reddit.com<%= permalink %>' target='none'><%= title %></a> \
         <div class='clear'></div> \
-        <a href='<%= image_url %>'><img src='<%= image_url %>'></img></a> \
+        <a href='<%= image_url %>'><img src='<%= image_url %>' alt='<%= title %>'></img></a> \
         </div>";
 
     var subredditTpl = "<input type='checkbox' name='<%= subreddit %>' \
@@ -136,6 +136,10 @@
 
 
     var main = function() {
+        window.onpopstate = function(event) {
+            console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+        };
+            
         var socket = new io.Socket();
         window.App = new Procrastinator;
 

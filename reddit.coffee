@@ -31,13 +31,14 @@ exports.Reddit = class
                 if err? or res.statusCode >= 400
                     console.log err
                 else
-                    console.log "got back some activity"
                     body = JSON.parse body
+                    console.log "got back some activity"
                     parseTopic(body, cb)
         )
 
 parseTopic = (body, cb) ->
 
+    console.log "found #{body.data.children.length} items"
     for i in body.data.children
         assert.ok i.kind == 't3'
         findImage(i.data.url, (image_url) ->

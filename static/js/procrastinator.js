@@ -2,7 +2,7 @@
     
 
     var opiateTpl = "<div> \
-        <a href='http://reddit.com<%= permalink %>' target='none'><%= title %></a> \
+        <a href='http://reddit.com<%= permalink %>'><%= title %></a> \
         <div class='clear'></div> \
         <a href='<%= image_url %>'><img src='<%= image_url %>' alt='<%= title %>'></img></a> \
         </div>";

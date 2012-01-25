@@ -140,7 +140,7 @@
             console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
         };
             
-        var socket = new io.Socket();
+        var socket = new io.connect();
         window.App = new Procrastinator;
 
         var subreddits = ['pics', 'funny', 'comics', 'inglip'];

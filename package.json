@@ -1,15 +1,15 @@
 {
   "name": "Procrastinator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
-    "express": "2.2.0",
-    "jade": "0.10.3",
-    "socket.io": "0.6.17",
-    "underscore": "1.1.5",
-    "less": "1.0.41",
-    "request": "1.9.5",
+    "express": "2.5.0",
+    "jade": "0.16.4",
+    "socket.io": "0.8.7",
+    "underscore": "1.2.1",
+    "less": "1.2.0",
+    "request": "2.2.0",
     "spec": "1.0.0rc3",
-    "coffee-script": "1.0.1",
+    "coffee-script": "1.2.0",
     "apricot": "0.0.4",
     "mime": "1.2.2"
   }

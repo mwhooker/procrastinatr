@@ -6,6 +6,7 @@ _ = require 'underscore'
 reddit = require './reddit'
 
 app = express.createServer(express.logger())
+io = io.listen(app)
 
 app.configure(() ->
     port = parseInt(process.env.PORT || 8000)
@@ -51,9 +52,9 @@ port = app.set('port')
 console.log "Listening on port " + port
 app.listen port
 
-socket = io.listen(app)
+#socket = io.listen(app)
 
-socket.on('connection', (client) ->
+io.sockets.on('connection', (client) ->
     console.log 'connection'
     client.on('message', (subreddit) ->
         console.log subreddit

@@ -56,11 +56,12 @@ app.listen port
 
 io.sockets.on('connection', (client) ->
     console.log 'connection'
-    client.on('message', (subreddit) ->
-        console.log subreddit
-        r = new reddit.Reddit(subreddit)
-        r.get(null, (story) ->
-            client.emit('story', story)
-        )
+    client.on('insufflate', (subreddits) ->
+        console.log subreddits
+        _.each subreddits, (subreddit) ->
+            r = new reddit.Reddit(subreddit)
+            r.get(null, (story) ->
+                client.emit('story', story)
+            )
     )
 )

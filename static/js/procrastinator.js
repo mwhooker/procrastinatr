@@ -163,7 +163,7 @@
             var active = Subreddits.active().map(function(item) {
                 return item.get('subreddit');
             });
-            socket.send(active);
+            socket.emit('insufflate', active);
         })
         socket.on('story', function(data){
             var opiate = new Opiate(data);

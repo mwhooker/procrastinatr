@@ -1,5 +1,5 @@
 (function() {
-    
+
 
     var opiateTpl = "<div> \
         <a href='http://reddit.com<%= permalink %>'><%= title %></a> \
@@ -139,7 +139,7 @@
         window.onpopstate = function(event) {
             console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
         };
-            
+
         var socket = new io.connect();
         window.App = new Procrastinator;
 
@@ -157,15 +157,15 @@
             Subreddits.add(subreddit);
         });
 
-        socket.on('connect', function(){ 
+        socket.on('connect', function(){
             console.log('connected');
 
             var active = Subreddits.active().map(function(item) {
                 return item.get('subreddit');
             });
             socket.send(active);
-        }) 
-        socket.on('message', function(data){ 
+        })
+        socket.on('story', function(data){
             var opiate = new Opiate(data);
             Opiates.add(opiate);
         })

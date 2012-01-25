@@ -60,7 +60,7 @@ io.sockets.on('connection', (client) ->
         console.log subreddit
         r = new reddit.Reddit(subreddit)
         r.get(null, (story) ->
-            client.send(story)
+            client.emit('story', story)
         )
     )
 )

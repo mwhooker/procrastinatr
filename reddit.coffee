@@ -38,7 +38,12 @@ exports.Reddit = class
 
 parseTopic = (body, cb) ->
 
+    if not body or not body.data
+        console.log "no data returned"
+        return
+
     console.log "found #{body.data.children.length} items"
+
     for i in body.data.children
         assert.ok i.kind == 't3'
         findImage(i.data.url, (image_url) ->

@@ -53,10 +53,17 @@ parseTopic = (body, cb) ->
         )
 
 findImage = (imageUrl, cb) ->
-    if mime.lookup(imageUrl).split('/')[0] == 'image'
+    if not url?
+        console.log "url fucked up ", url
+        return
+    uri = url.parse(imageUrl)
+    if not uri.pathname?
+        console.log "uri fucked up ", uri
+        return
+
+    if mime.lookup(uri.pathname).indexOf('image') == 0
         return cb(imageUrl)
 
-    uri = url.parse(imageUrl)
     if uri.hostname.indexOf('imgur.com', 0) >= 0
         console.log("fixing #{imageUrl}")
         uri.pathname = uri.pathname + '.jpg'
